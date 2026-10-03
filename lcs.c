@@ -1,0 +1,37 @@
+#include<stdio.h>
+#include<string.h>
+#include<stdbool.h>
+#define MAX_LENGTH 100
+
+int max(int a, int b){if(a>b){return a;}else{return b;}}
+
+int lcsOf3(char X[], char Y[], char Z[], int m, int n, int o){
+    // Remove newline/carriage-return characters
+    X[strcspn(X, "\r\n")] = '\0';
+    Y[strcspn(Y, "\r\n")] = '\0';
+    Z[strcspn(Z, "\r\n")] = '\0';
+
+    m = strlen(X);
+    n = strlen(Y);
+    o = strlen(Z);
+
+    int dp[m + 1][n + 1][o + 1];
+
+    for(int i = 0; i <= m; i++)
+    {
+        for(int j = 0; j <= n; j++)
+        {
+            for(int k = 0; k <= o; k++)
+            {
+                if(i == 0 || j == 0 || k == 0)
+                {
+                    dp[i][j][k] = 0;
+                }
+                else if(X[i - 1] == Y[j - 1] &&
+                        Y[j - 1] == Z[k - 1])
+                {
+                    dp[i][j][k] =
+                        dp[i - 1][j - 1][k - 1] + 1;
+                }
+                else
+}
